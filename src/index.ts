@@ -15,7 +15,7 @@ fastify.register(routes)
 
 AppDataSource.initialize().then(async () => {
     console.log("App datasource initialized.");
-    fastify.listen({port: 3000}, (err, address) => {
+    fastify.listen({ port: 3000 }, (err, address) => {
         if (err) {
             console.error(err)
             process.exit(1)

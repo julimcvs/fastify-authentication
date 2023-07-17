@@ -16,19 +16,19 @@ export class AuthService {
             const token = fastify.jwt.sign({
                 "email": userDto.email,
                 "password": userDto.password
-              })
-            reply.status(201).send({token: token})
+            })
+            reply.status(201).send({ token: token })
         }
     }
 
     private async validateUser(userDto: UserRegisterDTO, reply) {
         if (userDto.password !== userDto.confirmPassword) {
-            reply.status(400).send({message: "Informed passwords do not match."})
+            reply.status(400).send({ message: "Informed passwords do not match." })
             return false
         }
         const existingUser = await User.findOneBy({ email: userDto.email });
         if (existingUser) {
-            reply.status(400).send({message: "This user is already registered."})
+            reply.status(400).send({ message: "This user is already registered." })
             return false
         }
         return true

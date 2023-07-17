@@ -2,7 +2,6 @@
 import { User } from "../entity/User"
 
 import bcrypt from 'bcrypt'
-import { UserRegisterDTO } from "../model/userRegisterDTO"
 import { UserDTO } from "../model/userDTO"
 
 const fp = require("fastify-plugin")
