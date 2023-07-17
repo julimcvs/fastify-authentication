@@ -1,10 +1,16 @@
+import { AuthService } from "../service/authService"
+
 const routes = async (fastify) => {
-    console.log('routing');
+    const authService = new AuthService;
     
-    fastify.post('/login', {onRequest: [fastify.login]}, (req, reply) => {
+    fastify.post('/login', {preHandler: [fastify.login]}, (req, reply) => {
     })
 
-    fastify.get('/protected', {onRequest: [fastify.authenticate]}, async function (request, reply) {
+    fastify.get('/protected', {preHandler: [fastify.authenticate]}, async function (request, reply) {
+    })
+
+    fastify.post('/register', (req, reply) => {
+        authService.register(req, reply, fastify);
     })
 }
 
